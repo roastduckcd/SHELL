@@ -9,11 +9,11 @@ if [ "n" == "$ans" ]; then
 else
 	git add .
 	echo "#######################################################################################"
-	read -p "					typo commit message:" msg
+	read -p "				typo commit message:" msg
 	git commit -m "$msg"
 	branches=$(git branch)
 	echo "#######################################################################################"
-	echo "						you own these branches:"
+	echo "				you own these branches:"
 	echo "						$branches"
 	echo "#######################################################################################"
 	read -p "which branch you want to push:" branch
