@@ -1,10 +1,10 @@
 #!/bin/sh
-post_prefix=$(sed -n '1,15p' /Users/yangsong/Desktop/BLOG/scaffolds/post.md)
+post_prefix=$(sed -n '1,17p' /Users/yangsong/iCollections/BLOG/BLOG/scaffolds/post.md)
 
 read -p 'enter a new markdown filename：' filename
 echo "start create new post······"
 filepath=$filename.md
-fullpath=/Users/yangsong/Desktop/BLOG/source/_posts/$filepath
+fullpath=/Users/yangsong/iCollections/BLOG/BLOG/source/_posts/$filepath
 touch $fullpath
 
 # todo 自动复制最新文章
@@ -61,8 +61,8 @@ done
 
 sed -i "" -e "s/{{ title }}/$filename/" $fullpath
 
-read -p "relative folder(prefix: ~/Desktop/CmdMarkDown) to new post:" relative_folder
-cmd_markdown_post_path=/Users/yangsong/Desktop/CmdMarkDown/${relative_folder}/$filename.md
+read -p "relative folder(prefix: ~/iCollections/BLOG/BLOG/CmdMarkDown) to new post:" relative_folder
+cmd_markdown_post_path=/Users/yangsong/iCollections/BLOG/CmdMarkDown/${relative_folder}/$filename.md
 if [ ! -e ${cmd_markdown_post_path} ]; then
     echo "${cmd_markdown_post_path}.md not exist, please check again"
     exit 0
@@ -70,7 +70,7 @@ fi
 pbcopy < ${cmd_markdown_post_path}
 copyed_markdown=$(pbpaste)
 
-cd /Users/yangsong/Desktop/BLOG/source/_posts/
+cd /Users/yangsong/iCollections/BLOG/BLOG/source/_posts/
 
 echo "\n\n$copyed_markdown" >> $fullpath
 # sed 追加命令 格式？？？
@@ -82,7 +82,7 @@ read -p "check your post, ready to push?(y/n):" isOK
 
 if [ "y" == $isOK -o "yes" == $isOK ]; then
     # source /Users/yangsong/Desktop/SHELL/git_ordinary.sh "文章：$filepath" "source"
-    cd /Users/yangsong/Desktop/BLOG
+    cd /Users/yangsong/iCollections/BLOG/BLOG
     git add .
     git commit -m "文章：$filepath"
     echo "pushing post to repository······"
